@@ -9,8 +9,13 @@ import javax.money.MonetaryAmount;
 import org.javamoney.moneta.FastMoney;
 import org.javamoney.moneta.Money;
 
+import br.ucsal.pooa.finance.controller.Controller;
+import br.ucsal.pooa.finance.controller.LancamentoController;
 import br.ucsal.pooa.finance.model.Lancamento;
+import br.ucsal.pooa.finance.persistencia.Banco;
+import br.ucsal.pooa.finance.persistencia.GenericoDAO;
 import br.ucsal.pooa.finance.persistencia.LancamentoDAO;
+import br.ucsal.pooa.finance.persistencia.Pessistencia;
 import br.ucsal.pooa.finance.view.Janela;
 
 public class Principal {
@@ -20,8 +25,13 @@ public class Principal {
 	
 	//M V C
 	//
-		LancamentoDAO dao = new LancamentoDAO();
-		Janela janela = new Janela(dao.listar());
+		Banco banco = new Banco();
+		
+		Pessistencia dao = new GenericoDAO();		
+		
+		Controller controller = new LancamentoController(dao);
+		
+		Janela janela = new Janela(controller);
 
 	}
 	

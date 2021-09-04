@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * @author mariojp
  *
  */
-public class Lancamento {
+public class Lancamento implements Entidade {
 	
 	public static final String DESPESA = "DESPESA";
 	public static final String RECEITA = "RECEITA";
