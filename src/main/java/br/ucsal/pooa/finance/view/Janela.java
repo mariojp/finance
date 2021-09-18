@@ -4,17 +4,24 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 
 import br.ucsal.pooa.finance.controller.Controller;
+import br.ucsal.pooa.finance.exceptions.ValorInvalidoException;
 import br.ucsal.pooa.finance.model.Entidade;
 import br.ucsal.pooa.finance.model.Lancamento;
+import br.ucsal.pooa.finance.util.Console;
+import br.ucsal.pooa.finance.util.SegurancaThread;
 
 public class Janela {
 
 	private Scanner terminal = new Scanner(System.in);
 	private Controller controller;
 	
+	public final static int SEGUNDOS = 15;
+	
 	
 	public Janela(Controller controller) {
 		this.controller = controller;
+		Thread thread = new SegurancaThread();
+		thread.start();
 		init();
 	}
 	
@@ -49,6 +56,11 @@ public class Janela {
 			System.exit(0);
 			break;
 		}
+	}
+	
+	
+	public void sair() {
+		System.exit(0);
 	}
 	
 	public void saldo() {
@@ -92,12 +104,16 @@ public class Janela {
 		if(descricao.isEmpty()) {
 			descricao = tipo;
 		}
-		System.out.print("Digite o Valor:");
-		String valor = terminal.nextLine();
-		BigDecimal amount = new BigDecimal(valor);
+		BigDecimal amount = BigDecimal.ZERO;
+		do {
+			try {
+				amount = Console.getValor("Digite o Valor:", terminal);
+			} catch (ValorInvalidoException e) {
+				System.out.println(e.getMessage());
+			}
+		} while (amount == BigDecimal.ZERO); 
 		
 		Lancamento lancamento = new Lancamento(tipo, amount, descricao);
-		
 		controller.add(lancamento);
 		init();
 	}

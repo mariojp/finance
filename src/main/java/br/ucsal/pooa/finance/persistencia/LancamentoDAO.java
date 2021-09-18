@@ -11,7 +11,7 @@ import java.util.List;
 import br.ucsal.pooa.finance.model.Entidade;
 import br.ucsal.pooa.finance.model.Lancamento;
 
-public class LancamentoDAO extends GenericoDAO implements Pessistencia{
+public class LancamentoDAO extends GenericoDAO implements Pessistencia {
 
 
 
