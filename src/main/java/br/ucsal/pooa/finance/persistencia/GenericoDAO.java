@@ -8,7 +8,7 @@ import br.ucsal.pooa.finance.model.Lancamento;
 
 public class GenericoDAO implements Pessistencia {
 	
-	private List lista;
+	private List<Entidade> lista;
 	
 	protected Banco banco;
 
@@ -22,7 +22,7 @@ public class GenericoDAO implements Pessistencia {
 	}
 		
 	public List<Entidade> listar() {
-		return lista;
+		return this.lista;
 	}
 
 	@Override
