@@ -32,41 +32,15 @@ public class JanelaDestop extends JFrame {
 		
 		JButton cadastro = new JButton("Clique aqui");
 		cadastro.setBounds(100, 100, 200, 150);
-		
-		cadastro.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if(cadastro.getX() == 100) {
-					cadastro.setBounds(400, 400, 200, 150);
-				}else {
-					cadastro.setBounds(100, 100, 200, 150);
-				}
-			}
-		});
 
-		new Thread(new Runnable() {			
-			@Override
-			public void run() {
-				while(true) { 
-					if(iniciar) { 
-						cadastro.setBounds( (int)(Math.random()*800), (int) (Math.random()*600), 200, 150);
-					}
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-		}).start();
+
 		
 		cadastro.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			
-				JOptionPane.showMessageDialog(JanelaDestop.this, "Voce clicou no BOTão");
+				JOptionPane.showMessageDialog(JanelaDestop.this,"Cotacao" );
 				
 			}
 		});

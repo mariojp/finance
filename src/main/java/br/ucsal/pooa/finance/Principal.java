@@ -1,5 +1,6 @@
 package br.ucsal.pooa.finance;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 import javax.money.CurrencyUnit;
@@ -17,6 +18,8 @@ import br.ucsal.pooa.finance.persistencia.Banco;
 import br.ucsal.pooa.finance.persistencia.GenericoDAO;
 import br.ucsal.pooa.finance.persistencia.LancamentoDAO;
 import br.ucsal.pooa.finance.persistencia.Pessistencia;
+import br.ucsal.pooa.finance.util.DolarServidor;
+import br.ucsal.pooa.finance.util.SocketDollar;
 import br.ucsal.pooa.finance.view.Janela;
 import br.ucsal.pooa.finance.view.JanelaDestop;
 
@@ -24,12 +27,22 @@ public class Principal {
 
 	public static void main(String[] args) {
 	
+		try {
+			DolarServidor dolar = new DolarServidor();
+			new Thread(dolar).start();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		new Thread(new SocketDollar()).start();;
 	
 	//M V C
 	//
 		//Banco banco;
 		//try {
 			//banco = new Banco();
+		
 			Pessistencia dao = new GenericoDAO();		
 			Controller controller = new LancamentoController(dao);
 			//Janela janela = new Janela(controller);
@@ -38,6 +51,9 @@ public class Principal {
 		//	System.out.println(e.getMessage());
 			
 		//}
+			
+			
+
 		
 		
 
