@@ -20,22 +20,22 @@ import br.ucsal.pooa.finance.persistencia.LancamentoDAO;
 import br.ucsal.pooa.finance.persistencia.Pessistencia;
 import br.ucsal.pooa.finance.util.DolarServidor;
 import br.ucsal.pooa.finance.util.SocketDollar;
-import br.ucsal.pooa.finance.view.Janela;
-import br.ucsal.pooa.finance.view.JanelaDestop;
+import br.ucsal.pooa.finance.view.Console;
+import br.ucsal.pooa.finance.view.Destop;
 
 public class Principal {
 
 	public static void main(String[] args) {
 	
-		try {
-			DolarServidor dolar = new DolarServidor();
-			new Thread(dolar).start();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		new Thread(new SocketDollar()).start();;
+//		try {
+//			DolarServidor dolar = new DolarServidor();
+//			new Thread(dolar).start();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		new Thread(new SocketDollar()).start();;
 	
 	//M V C
 	//
@@ -44,11 +44,17 @@ public class Principal {
 			//banco = new Banco();
 		
 			Pessistencia dao = new GenericoDAO();		
+			
 			Controller controller = new LancamentoController(dao);
-			//Janela janela = new Janela(controller);
-			JanelaDestop janela = new JanelaDestop(controller);
+			
+			controller.add(new Lancamento("D", BigDecimal.ONE, "DESPESA"));
+			Destop janela = new Destop(controller);
+			
+			
+			//Console console = new Console(controller);
+
 		//} catch (ErroConecaoBancoDeDados e) {
-		//	System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 			
 		//}
 			

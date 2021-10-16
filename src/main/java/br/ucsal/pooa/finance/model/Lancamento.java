@@ -14,9 +14,12 @@ public class Lancamento implements Entidade {
 	public static final String DESPESA = "DESPESA";
 	public static final String RECEITA = "RECEITA";
 
+	@Validacao(descricao = "getTipo")
 	private String tipo;
 	private BigDecimal valor;
+	@Validacao(descricao = "getDescricao")
 	private String descricao;
+	
 	public Lancamento(String tipo, BigDecimal valor, String descricao) {
 		super();
 		this.tipo = tipo;
